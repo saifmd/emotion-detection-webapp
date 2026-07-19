@@ -1,0 +1,60 @@
+Step-by-step breakdown
+1. Choose a model
+This line picks the model:
+model_name = os.getenv("HF_EMOTION_MODEL", "cardiffnlp/twitter-roberta-base-emotion")
+os.getenv(...) checks for an environment variable named HF_EMOTION_MODEL
+if none is set, it uses the default model:
+cardiffnlp/twitter-roberta-base-emotion
+That model is a pretrained transformer model fine-tuned for emotion classification.
+
+2. Create a Hugging Face pipeline
+This line builds the pipeline:
+classifier = pipeline("text-classification", model=model_name, tokenizer=model_name, truncation=True)
+Here:
+
+"text-classification" tells Hugging Face that we want a classification task
+model=model_name loads the emotion model
+tokenizer=model_name uses the model’s tokenizer
+truncation=True ensures long text is handled safely
+3. Run the model on the input text
+This line sends the text to the model:
+result = classifier(text_to_analyze, top_k=None)[0]
+The model returns a list of predicted labels and scores.
+For example, it might return something like:
+[
+    {"label": "joy", "score": 0.91},
+    {"label": "sadness", "score": 0.05},
+    ...
+]
+
+4. Normalize the result into your app’s format
+The code then maps the model output into your own emotion dictionary:
+label_map = {
+    "anger": "anger",
+    "disgust": "disgust",
+    "fear": "fear",
+    "joy": "joy",
+    "sadness": "sadness",
+}
+
+So it converts the model’s output into the same structure your Flask app expects.
+
+5. Fill missing values
+If the model does not return all five emotion categories, the code adds zeros:
+missing = [emo for emo in ["anger", "disgust", "fear", "joy", "sadness"] if emo not in normalized]
+for emo in missing:
+    normalized[emo] = 0.0
+This keeps the response shape consistent.
+
+6. Pick the dominant emotion
+Finally:
+dominant = max(normalized, key=normalized.get)
+This picks the emotion with the highest score.
+
+Why this is useful
+This block makes the app smarter than simple keyword matching because it uses a pretrained transformer model instead of manually checking for words.
+
+What happens if Hugging Face fails?
+The code wraps everything in a try/except block:
+
+So if the model cannot load or inference fails, the function silently falls back to the keyword/VADER logic below.

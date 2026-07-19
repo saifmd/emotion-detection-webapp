@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./static/mywebscript.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7ff, #eef4ff);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+        .demo-card {
+            max-width: 900px;
+            margin: 0 auto;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .card-header {
+            background: linear-gradient(90deg, #4f46e5, #2563eb);
+            color: white;
+            padding: 24px;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .helper-text {
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        .result-box {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 120px;
+            white-space: pre-wrap;
+        }
+        .btn-primary-custom {
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            border: none;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card demo-card">
+        <div class="card-header">
+            <h1 class="mb-2 text-center">Emotion Detection</h1>
+            <p class="text-center mb-0">Enter a sentence and see how an AI model classifies its emotional tone.</p>
+        </div>
+        <div class="card-body">
+            <p class="helper-text">Try examples like: <em>"I am so happy today"</em> or <em>"I feel really afraid about this"</em>.</p>
+
+            <div class="form-group">
+                <label class="font-weight-bold mb-2" for="textToAnalyze">Text to analyze</label>
+                <textarea class="form-control" id="textToAnalyze" rows="4" placeholder="Write a sentence here..."></textarea>
+            </div>
+
+            <div class="mt-4">
+                <button onclick="RunSentimentAnalysis()" class="btn btn-primary btn-primary-custom">Analyze Emotion</button>
+            </div>
+
+            <div class="mt-4">
+                <h5 class="font-weight-bold">Result</h5>
+                <div id="system_response" class="result-box">Your analysis will appear here.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
