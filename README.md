@@ -45,6 +45,9 @@ This project demonstrates how to build a lightweight emotion detection demo that
 4. The detector returns scores for the supported emotions and identifies the dominant emotion.
 5. The server sends the result back to the browser, where it is shown in the UI.
 
+<img width="682" height="460" alt="image" src="https://github.com/user-attachments/assets/38424fac-885c-4b33-ad93-f4f7af311fb4" />
+
+
 ## Local Setup
 
 ### 1. Create and activate a virtual environment
