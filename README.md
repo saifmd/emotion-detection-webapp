@@ -1,4 +1,4 @@
-# Emotion Detection Demo
+# Emotion Detection
 
 A simple web-based emotion detection application built with Python, Flask, and an open-source AI approach. The app accepts user-entered text, analyzes its emotional tone, and displays the most likely emotion along with confidence-style scores for multiple emotion categories.
 
@@ -100,7 +100,6 @@ This project is prepared for a simple public demo deployment. A Hugging Face Spa
 
 ## Notes
 
-- The app is designed for demo and educational purposes.
 - The current implementation supports a Hugging Face-based model path when available and falls back to a local rule-based approach if needed.
 - For production use, you may want to improve accuracy with a more specialized emotion model or a larger language model.
 
